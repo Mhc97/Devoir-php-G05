@@ -21,6 +21,7 @@
 
     </title>
     <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="./assets/script/main.js" type="module" defer ></script>
 
 </head>
 
