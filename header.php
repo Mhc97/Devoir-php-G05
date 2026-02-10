@@ -42,25 +42,22 @@
 
     <header>
 
-
+        <!-- modification courte -->
         <div class="group">
-            <div class="header-brand">
+            <!-- Le lien englobe tout pour que tout soit cliquable avec une ternaire-->
+            <a href="./index.php" class="nav <?php echo ($nav == 'accueil') ? 'light' : ''; ?>"
+                style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 15px;">
 
-            </div>
-            <img class="logo" src="./assets/images/image.png"><a href="./index.php" class="logo-link"></a></i>
+                <img class="logo" src="./assets/images/image.png" style="width: 50px; height: auto;">
 
+                <div>
+                    <h1 style="margin: 0; text-decoration: none;">CFI Tech currency converter</h1>
+                    <span style="color: gray;">Projet PHP Mini</span>
+                </div>
 
-
-            <div>
-
-                <h1>CFI Tech currency converter
-                </h1>
-                <span> Convertisseur de devises</span>
-
-            </div>
-
+            </a>
         </div>
-        </a>
+
 
 
         <input type="checkbox" id="checkburger">
@@ -124,4 +121,3 @@
         </nav>
 
     </header>
-

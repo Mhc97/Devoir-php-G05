@@ -4,7 +4,7 @@ session_start();
 $title = "Jeux";
 $nav = "jeuxMonnaies";
 require "./header.php";
-require "./fonctions/functionsMath.php";
+require "./fonctions/functionsCurrency.php";
 
 ?>
 
