@@ -21,7 +21,7 @@
 
     </title>
     <link rel="stylesheet" href="./assets/css/style.css">
-    <script src="./assets/script/main.js" type="module" defer ></script>
+    <script src="./assets/script/main.js" type="module" defer></script>
 
 </head>
 
@@ -34,7 +34,7 @@
 
     // var_dump($_SESSION);
     // var_dump($_POST);  
-
+    
     require "./fonctions/connected.php";
 
 
@@ -44,21 +44,24 @@
 
 
         <div class="group">
-             <img class="logo" src="./assets/images/image.png"></i>
-<a href="./index.php" class="nav <?php if ($nav == "accueil"): ?>light<?php endif; ?>">
+            <div class="header-brand">
+
+            </div>
+            <img class="logo" src="./assets/images/image.png"><a href="./index.php" class="logo-link"></a></i>
+
 
 
             <div>
 
                 <h1>CFI Tech currency converter
                 </h1>
-                <span> Projet PHP Mini </span>
+                <span> Convertisseur de devises</span>
 
             </div>
 
         </div>
-</a>
-           
+        </a>
+
 
         <input type="checkbox" id="checkburger">
         <label for="checkburger" class="burger">
@@ -79,7 +82,10 @@
 
                     Conversion
 
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down group-hover:rotate-180 transition-transform duration-200" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-chevron-down group-hover:rotate-180 transition-transform duration-200"
+                        aria-hidden="true">
                         <path d="m6 9 6 6 6-6"></path>
                     </svg>
 
@@ -108,7 +114,8 @@
 
             <a href="./profil.php" class="nav <?php if ($nav == "profil"): ?>light<?php endif; ?>">Profil</a>
 
-            <a href="./jeuxMonnaies.php" class="nav <?php if ($nav == "jeuxMonnaies"): ?>light<?php endif; ?>">Jeux des monnaies</a>
+            <a href="./jeuxMonnaies.php" class="nav <?php if ($nav == "jeuxMonnaies"): ?>light<?php endif; ?>">Jeux des
+                monnaies</a>
 
             <a href="./logout.php" class="nav" <?php if (!connected($_SESSION)): ?> style="display: none" <?php endif; ?>>Logout</a>
 
@@ -118,4 +125,3 @@
 
     </header>
 
-    <main></main>

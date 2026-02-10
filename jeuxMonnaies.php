@@ -7,6 +7,7 @@ require "./header.php";
 require "./fonctions/functionsMath.php";
 
 ?>
+
 <div class="jeux">
 
 

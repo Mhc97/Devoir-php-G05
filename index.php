@@ -16,16 +16,10 @@ require "./header.php";
 
 ?>
 
-
-
-
-
-
-
 <div class="main">
 
 
-    <img src="./assets/images/finance.avif">
+    <img src="./assets/images/convertissor.JPEG">
 
 <!-- partie modifier -->
 
@@ -42,7 +36,7 @@ require "./header.php";
 
         <p class="gris">
 
-            Développé dans le cadre du mini projet PHP-HTML.
+            Commencer maintenant
 
         </p>
 

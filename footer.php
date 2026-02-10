@@ -6,16 +6,22 @@
 
 
         <a href="./index.php"> <span <?php if ($nav == "accueil"): ?>class="focus" <?php endif; ?>>◯</span> Accueil</a>
-        <a href="./session.php"> <span <?php if ($nav == "debug"): ?>class="focus" <?php endif; ?>>◯</span> Debug </a>
-        <a href="./reset.php"> <span <?php if ($nav == "reset"): ?>class="focus" <?php endif; ?>>◯</span> Reset </a>
-
+        <a href="./profil.php"> <span <?php if ($nav == "profil"): ?>class="focus" <?php endif; ?>>◯</span> Profil </a>
+        <a href="./jeuxMonnaies.php"> <span <?php if ($nav == "jeuxMonnaies"): ?>class="focus" <?php endif; ?>>◯</span>
+            Jeux des monnaies</a>
+        <a href="./login.php"> <span <?php if ($nav == "login"): ?>class="focus" <?php endif; ?>>◯</span> login</a>
     </div>
 
     <div>
 
 
         <span> © Cfitech 2025-2026 </span>
-        <time id="horloge"></time>
+        <!-- une fonction php pour l'heure -->
+        <?php
+        date_default_timezone_set('Europe/Brussels');
+        echo date('d/m/Y H:i:s');
+        ?>
+        <!-- <time id="horloge"></time> -->
 
     </div>
 
@@ -28,11 +34,11 @@
         setInterval(actualiser, 1000);
         actualiser();
 
-    //    pour changer de thème
-const btn = document.querySelector("body"); 
-btn.addEventListener("click", function () { 
-btn.classList.add('active'); 
-});
+        //    pour changer de thème 
+        const btn = document.querySelector("body");
+        btn.addEventListener("click", function () {
+            btn.classList.add('active');
+        });
     </script>
 
 </footer>
