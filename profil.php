@@ -1,6 +1,8 @@
 <?php
 
+require "./fonctions/classes/Currency.php";
 session_start();
+
 
 if (!isset($_SESSION["connected"]) || !$_SESSION["connected"]) {
 
@@ -12,7 +14,6 @@ if (!isset($_SESSION["connected"]) || !$_SESSION["connected"]) {
         $_SESSION["checkName"] = true;
         $_SESSION["checkMdp"] = true;
         header("Location: ./login.php");
-        
     } else if ($_POST["user"] == "") {
 
         $_SESSION["checkName"] = true;
@@ -26,12 +27,7 @@ if (!isset($_SESSION["connected"]) || !$_SESSION["connected"]) {
 
         $_SESSION["connected"] = true;
         $_SESSION["name"] = $_POST["user"];
-        $_SESSION["operationCount"] = 0;
-
-        if (!isset($_SESSION["totalOperation"])) {
-
-            $_SESSION["totalOperation"] = 0;
-        }
+        $_SESSION["currencyCount"] = 0;
     }
 }
 
@@ -108,11 +104,9 @@ require "./fonctions/lastOperation.php";
 
         <div class="stat">
 
-            <h1><?php if (isset($_SESSION["totalOperation"])): echo $_SESSION["totalOperation"];
-                else: ?>0<?php endif; ?></h1>
+            <h1><?php echo $_SESSION["currencyCount"] ?></h1>
 
-            <p> Vous avez effectué <span style="color: blue;"><?php if (isset($_SESSION["totalOperation"])): echo $_SESSION["totalOperation"];
-                                                                else: ?>0<?php endif; ?></span> opérations mathématiques au total </p>
+            <p> Vous avez effectué <span style="color: blue;"><?php echo $_SESSION["currencyCount"] ?></span> conversion(s) </p>
 
         </div>
 
@@ -123,102 +117,69 @@ require "./fonctions/lastOperation.php";
     <div class="footer-profil">
 
 
-        <div class="no-operation" <?php if (isset($_SESSION["operation"])): ?> style="display: none;" <?php endif; ?>>
+        <div class="no-operation" <?php if (isset($_SESSION["currency"])): ?> style="display: none;" <?php endif; ?>>
 
 
 
             <div class="icon">🧮</div>
 
-            <p> Vous n'avez pas encore effectué d'opérations. Utilisez la calculatrice pour commencer ! </p>
+            <p> Vous n'avez pas encore effectué de conversion. Utilisez l'outil de conversion pour commencer ! </p>
 
         </div>
 
-        <div class="operation" <?php if (!isset($_SESSION["operation"])): ?> style="display: none;" <?php endif; ?>>
+        <div class="operation" <?php if (!isset($_SESSION["currency"])): ?> style="display: none;" <?php endif; ?>>
 
-            <div class="last-ope" <?php if (!isset($_SESSION["operation"])): ?> style="display: none;" <?php endif; ?>>
+            <div class="last-ope" <?php if (!isset($_SESSION["currency"])): ?> style="display: none;" <?php endif; ?>>
 
                 <h3> Dernières opérations </h3>
 
-                <div class="last addition" <?php if (empty(lastOperation("addition"))): ?> style="display: none;" <?php endif; ?>>
+                <div class="last addition">
 
-                    <p class="gris"> Dernière addition </p>
-                    <?php $tabAddition = lastOperation("addition"); ?>
+                    <?php $lastCurrency = $_SESSION["currency"]["currency" . $_SESSION["currencyCount"]] ?>
 
-                    <p><?php echo $tabAddition["nb1"] . " + " . $tabAddition["nb2"] . " = "; ?><span style="color: var(--color-addition);"><?php echo $tabAddition["resultat"]; ?></span></p>
-
-                </div>
-
-                <div class="last soustraction" <?php if (empty(lastOperation("soustraction"))): ?> style="display: none;" <?php endif; ?>>
-
-                    <p class="gris"> Dernière soustraction </p>
-                    <?php $tabSoustraction = lastOperation("soustraction"); ?>
-
-                    <p><?php echo $tabSoustraction["nb1"] . " - " . $tabSoustraction["nb2"] . " = "; ?><span style="color: var(--color-soustraction);"><?php echo $tabSoustraction["resultat"]; ?></span></p>
-
+                    <p><?php echo $lastCurrency->getMultiplicator() . " " . $lastCurrency->getValue1() . " = " . $lastCurrency->getConversion() . " " . $lastCurrency->getValue2(); ?></p>
 
                 </div>
 
-                <div class="last multiplication" <?php if (empty(lastOperation("multiplication"))): ?> style="display: none;" <?php endif; ?>>
 
-                    <p class="gris"> Dernière multiplication </p>
-                    <?php $tabMultiplication = lastOperation("multiplication"); ?>
-
-                    <p><?php echo $tabMultiplication["nb1"] . " x " . $tabMultiplication["nb2"] . " = "; ?><span style="color: var(--color-multiplication);"><?php echo $tabMultiplication["resultat"]; ?></span></p>
-
-
-                </div>
-
-                <div class="last division" <?php if (empty(lastOperation("division"))): ?> style="display: none;" <?php endif; ?>>
-
-                    <p class="gris"> Dernière division </p>
-                    <?php $tabDivision = lastOperation("division"); ?>
-
-                    <p><?php echo $tabDivision["nb1"] . " / " . $tabDivision["nb2"] . " = "; ?><span style="color: var(--color-division);"><?php echo $tabDivision["resultat"]; ?></span></p>
-
-                </div>
 
             </div>
 
-            <div class="history" <?php if (!isset($_SESSION["operation"])): ?> style="display: none;" <?php endif; ?>>
+            <div class="history" <?php if (!isset($_SESSION["currency"])): ?> style="display: none;" <?php endif; ?>>
 
-                <h3> Historique complet des opérations </h3>
+                <h3> Historique complet des conversions </h3>
 
                 <div class="title-history">
 
-                    <h4 class="ope"> Opération </h4>
 
                     <div class="bloc-ope">
 
+                        <h4 class="nb1"> Montant </h4>
+                        <h4 class="nb2"> Devise convertie </h4>
+                        <h4 class="nb3"> Devise cible </h4>
 
-                        <h4 class="nb1"> Nombre 1 </h4>
-                        <h4 class="nb2"> Nombre 2 </h4>
-                        <h4 class="result"> Résultat </h4>
 
                     </div>
+
+                    <h4 class="ope"> Change </h4>
 
                 </div>
 
 
-                <?php
+                <?php foreach ($_SESSION["currency"] as $conversion): ?>
 
-                foreach ($_SESSION["operation"] as $operation):
-
-                    $type = $operation["type"];
-
-                ?>
-
-                    <div class="history-ope <?php echo $type; ?>">
-
-                        <p class="ope" style="color: var(--color-<?php echo $type; ?>);background-color: var(--back-color-<?php echo $type; ?>)"><?php echo strtoupper($type); ?></p>
+                    <div class="history-ope <?php echo $conversion->getMultiplicator(); ?>">
 
                         <div class="bloc-ope">
 
 
-                            <p class="nb1"><?php echo $operation["nb1"]; ?></p>
-                            <p class="nb2"><?php echo $operation["nb2"]; ?></p>
-                            <p class="result"><?php echo $operation["resultat"] ?></p>
+                            <p class="nb1"><?php echo strtoupper($conversion->getMultiplicator()); ?></p>
+                            <p class="nb2"><?php echo strtoupper($conversion->getValue1()); ?></p>
+                            <p class="result"><?php echo $conversion->getValue2(); ?></p>
 
                         </div>
+
+                           <p class="ope"> <?php echo $conversion->getConversion();?></p>
 
                     </div>
 
