@@ -4,12 +4,26 @@ session_start();
 $title = "Conversion";
 $nav = "euroPounds";
 require "./header.php";
-require "./fonctions/functionsMath.php";
-
+require "./fonctions/functionsCurrency.php";
 
 if (!connected($_SESSION)) {
 
     header("Location: ./login.php");
+}
+
+
+if (!empty($_POST["value1"]) && !empty($_POST["value2"] && !empty($_POST["multiplicator"]))) {
+
+    $value1 = $_POST["value1"];
+    $value2 = $_POST["value2"];
+    $multiplicator = $_POST["multiplicator"];
+
+    $tabConversion = getApi($value1,$value2,$multiplicator);
+    $conversion = $tabConversion["conversion"];
+    $date = $tabConversion["date"];
+    $date = new DateTime($date);
+    $date = $date->format("D d F Y");
+
 }
 
 
@@ -21,47 +35,45 @@ if (!connected($_SESSION)) {
     <h3>Conversion</h3>
 
 
-    <form id="formSwitch" method="post">
+    <form id="formConvert" action="" method="post">
+
 
         <div class="switch">
 
-
+            <input type="hidden" id="value1" name="value1" value="eur">
             <h1 class="devise" data-devise="eur"> Euros </h1>
 
-            <button type="submit">
 
 
-                <div class="svg-container green">
-
-
-                    <svg width="21px" height="21px" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
-                        <g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" transform="translate(4 2)">
-                            <path d="m4.5 8.5-4 4 4 4" />
-                            <path d="m12.5 12.5h-12" />
-                            <path d="m8.5.5 4 4-4 4" />
-                            <path d="m12.5 4.5h-12" />
-                        </g>
-                    </svg>
-
-                </div>
-
-            </button>
-
-
+            <input type="hidden" id="value2" name="value2" value="gbp">
             <h1 class="devise" data-devise="gbp">Pounds</h1>
 
         </div>
 
-    </form>
-
-    <form id="formConvert" action="">
-
-
         <div class="input">
 
-            <input type="number" placeholder="Veuillez introduire le montant a convertir">
+            <input type="number" name="multiplicator" placeholder="Veuillez introduire le montant a convertir" required>
 
         </div>
+
+        <button type="submit" id="buttonSwitch">
+
+
+            <div class="svg-container green">
+
+
+                <svg width="21px" height="21px" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" transform="translate(4 2)">
+                        <path d="m4.5 8.5-4 4 4 4" />
+                        <path d="m12.5 12.5h-12" />
+                        <path d="m8.5.5 4 4-4 4" />
+                        <path d="m12.5 4.5h-12" />
+                    </g>
+                </svg>
+
+            </div>
+
+        </button>
 
         <button type="submit" class="blue"> Convertir </button>
 
@@ -70,7 +82,17 @@ if (!connected($_SESSION)) {
 
     <div id="result">
 
-    
+       <?php
+       
+       if (isset($conversion) && isset($date)){
+
+        echo strtoupper($value1)." => ".strtoupper($value2)."<br>";
+        echo $conversion."<br>";
+        echo "Mis a jour: ".$date;
+
+       }
+
+       ?>
 
     </div>
 
