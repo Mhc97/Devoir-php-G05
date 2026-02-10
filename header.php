@@ -39,17 +39,22 @@
     <header>
 
 
+
+        <!-- modification courte -->
         <div class="group">
+            <!-- Le lien englobe tout pour que tout soit cliquable avec une ternaire-->
+            <a href="./index.php" class="nav <?php echo ($nav == 'accueil') ? 'light' : ''; ?>"
+                style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 15px;">
 
-            <img class="logo" src="./assets/images/image.png"></i>
+                <img class="logo" src="./assets/images/image.png" style="width: 50px; height: auto;">
 
-            <div>
+                <div>
+                    <h1 style="margin: 0; text-decoration: none;">CFI Tech currency converter</h1>
+                    <span style="color: gray;">Projet PHP Mini</span>
+                </div>
 
-                <h1>CFI Tech currency converter
-                </h1>
-                <span> Projet PHP Mini </span>
-
-            </div>
+            </a>
+        </div>
 
         </div>
 
@@ -106,6 +111,10 @@
             <a href="./logout.php" class="nav" <?php if (!connected($_SESSION)): ?> style="display: none" <?php endif; ?>>Logout</a>
 
             <a href="./login.php" class="nav <?php if ($nav == "login"): ?>light<?php endif; ?>" <?php if (connected($_SESSION)): ?> style="display: none" <?php endif; ?>>login</a>
+ <!-- le bonus éteindre réallumez -->
+                <button id="theme-toggle" style="cursor:pointer; background:none; border:none; font-size:1.5rem;">
+    🌓
+</button>
 
         </nav>
 

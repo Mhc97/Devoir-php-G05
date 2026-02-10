@@ -19,7 +19,7 @@ header("Location: ./profil.php");
 
 body{
 
-background-color: white;
+background-color: #C0C0C0;;
 
 }
 

@@ -2,100 +2,114 @@
 
 session_start();
 
-if (isset($_POST["reset"])){
+if (isset($_POST["reset"])) {
 
-session_destroy();
-header("Location: ./");
+    session_destroy();
+    header("Location: ./");
 
 }
 
-$title="Accueil";
-$nav="accueil";
+$title = "Accueil";
+$nav = "accueil";
 require "./header.php";
 
 
 ?>
 
-    <div class="main">
+<div class="main">
 
 
-        <img src="./assets/images/photo-1716878906849-17ed9e9e6186.jpg">
+    <img src="./assets/images/convertissor.JPEG">
+
+<!-- partie modifier -->
+
+    <div class="txt">
 
 
+        <h3>🌍Bienvenue sur CFI Tech currency converter</h3>
 
-        <div class="txt">
+        <p>
+            Notre plateforme vous permet de convertir instantanément l'Euro vers les monnaies les plus utilisées au
+                monde (Dollar, Yen, Franc RDC, etc.). Profitez de taux actualisés et d'un historique complet de vos
+                transactions.
+        </p>
 
+        <p class="gris">
 
-            <h3>Bienvenue sur CFI Tech Calculator</h3>
+            Commencer maintenant
 
-            <p>
-                CFI Tech Calculator est une application web moderne qui vous permet d'effectuer des opérations mathématiques de base (addition, soustraction, multiplication, division) tout en gardant un historique complet de vos calculs. Connectez-vous pour accéder à toutes les fonctionnalités et suivre vos opérations mathématiques.
+        </p>
 
-            </p>
-
-            <p class="gris">
-
-                Développé dans le cadre du mini projet PHP-HTML.
-
-            </p>
-
-
-        </div>
 
     </div>
 
-    <div class="card">
+</div>
 
-        <div class="itemcard">
+<div class="card">
+
+    <div class="itemcard">
 
         <span class="icon"> 🔐 </span>
-  
-            <h3> Sécurisé</h3>
 
-            <span>
+        <h3> Sécurisé</h3>
 
-                Système de connexion sécurisé avec gestion des sessions
+        <span>
 
-            </span>
+            Système de connexion sécurisé avec gestion des sessions
 
-        </div>
+        </span>
 
-        <div class="itemcard">
+    </div>
+
+    <div class="itemcard">
 
         <span class="icon"> 📊 </span>
 
-            
-            <h3> Historique </h3>
 
-            <span>
+        <h3> Historique </h3>
 
-                Gardez une trace de toutes vos opérations mathématiques
+        <span>
 
-            </span>
+            Gardez une trace de toutes vos Conversion
 
+        </span>
 
-
-        </div>
-
-        <div class="itemcard">
-
-            <span class="icon"> 🧮 </span>
-
-            
-            <h3> Calculatrice </h3>
-
-            <span>
-
-                Quatre opérations de base à votre disposition
-
-            </span>
-
-
-
-        </div>
 
 
     </div>
+
+    <div class="itemcard">
+
+        <span class="icon"> 🏦 </span>
+
+
+        <h3> Calculatrice </h3>
+
+        <span>
+
+            Taux de change actualisés pour 6 devises majeures (USD, JPY, MAD...)
+
+        </span>
+
+
+    </div>
+    <div class="itemcard">
+        <span class="icon"> 🔄 </span>
+        <h3>Bidirectionnel</h3>
+        <span>
+            Convertissez dans les deux sens (ex: Euro vers Yen et Yen vers Euro).
+        </span>
+    </div>
+
+    <div class="itemcard">
+        <span class="icon"> 📜 </span>
+        <h3>Historique</h3>
+        <span>
+            Retrouvez le détail de toutes vos transactions dans votre profil.
+        </span>
+       
+
+</div>
 
 
 
@@ -103,4 +117,4 @@ require "./header.php";
 
 require "footer.php"
 
-?>
+    ?>
