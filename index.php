@@ -16,12 +16,6 @@ require "./header.php";
 
 ?>
 
-
-
-
-
-
-
     <div class="main">
 
 

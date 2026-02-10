@@ -1,10 +1,10 @@
 <?php
 
 require "./fonctions/classes/Currency.php";
+require "./fonctions/connected.php";
 session_start();
 
-
-if (!isset($_SESSION["connected"]) || !$_SESSION["connected"]) {
+if (!connected($_SESSION)) {
 
     if (empty($_POST)) {
 
