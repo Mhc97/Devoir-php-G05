@@ -1,5 +1,6 @@
 <?php
 
+require "./fonctions/classes/Currency.php";
 session_start();
 $title = "Conversion";
 $nav = "euroPounds";
@@ -14,15 +15,21 @@ if (!connected($_SESSION)) {
 
 if (!empty($_POST["value1"]) && !empty($_POST["value2"] && !empty($_POST["multiplicator"]))) {
 
-    $value1 = $_POST["value1"];
-    $value2 = $_POST["value2"];
-    $multiplicator = $_POST["multiplicator"];
-
-    $tabConversion = getApi($value1,$value2,$multiplicator);
+ 
+    $tabConversion = getApi($_POST["value1"],$_POST["value2"],$_POST["multiplicator"]);
     $conversion = $tabConversion["conversion"];
     $date = $tabConversion["date"];
     $date = new DateTime($date);
     $date = $date->format("D d F Y");
+
+    $currency = new Currency($_POST["value1"],$_POST["value2"],$_POST["multiplicator"],$conversion,$date);
+
+    $_SESSION["currencyCount"]++;
+    $count = $_SESSION["currencyCount"];
+
+    $_SESSION["currency"]["currency".$count] = $currency;
+
+    
 
 }
 
@@ -86,7 +93,7 @@ if (!empty($_POST["value1"]) && !empty($_POST["value2"] && !empty($_POST["multip
        
        if (isset($conversion) && isset($date)){
 
-        echo strtoupper($value1)." => ".strtoupper($value2)."<br>";
+        echo strtoupper($currency->getValue1())." => ".strtoupper($currency->getValue2())."<br>";
         echo $conversion."<br>";
         echo "Mis a jour: ".$date;
 

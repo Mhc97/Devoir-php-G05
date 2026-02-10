@@ -1,7 +1,5 @@
 import { switchCurrency} from "./fonction.js";
 let button = document.querySelector("#buttonSwitch");
-// let formConvert = document.querySelector("#formConvert");
-// let result = document.querySelector("#result");
 let devises = document.querySelectorAll(".devise");
 let devise1 = devises[0];
 let devise2 = devises[1];
@@ -10,15 +8,13 @@ let inputdevise2 = document.querySelector("#value2");
 
 
 
-// try {
+try {
 
 
     switchCurrency(button, devise1, devise2,inputdevise1,inputdevise2);
 
-    // getCurrency(formConvert, devise1, devise2, result);
 
-
-// } catch { }
+} catch { }
 
 
 try {
