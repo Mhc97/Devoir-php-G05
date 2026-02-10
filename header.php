@@ -32,11 +32,7 @@
 
     <?php
 
-    // var_dump($_SESSION);
-    // var_dump($_POST);  
-
-    require "./fonctions/connected.php";
-
+    require_once "./fonctions/connected.php";
 
     ?>
 
