@@ -25,14 +25,8 @@
 
     </div>
 
-    <!-- Pour le SCRIPT j'ai utiliser l'ia mais je l'ai compris -->
 
     <script>
-        function actualiser() {
-            document.getElementById('horloge').textContent = new Date().toLocaleString('fr-FR');
-        }
-        setInterval(actualiser, 1000);
-        actualiser();
 
         //    pour changer de thème 
         const btn = document.querySelector("body");
